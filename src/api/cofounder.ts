@@ -1,5 +1,5 @@
 import { supabase } from '../lib/supabase';
-import type { ChatMessage } from '../types';
+import type { ChatMessage, ComposedEmail } from '../types';
 
 const EDGE_FUNCTION_URL = 'https://tewfnsbvfjrarodqgwnm.supabase.co/functions/v1/ai-cofounder';
 
@@ -10,13 +10,14 @@ export interface StreamAIResponseOptions {
   onChunk: (text: string) => void;
   onMetadata?: (metadata: { mode?: string; stage?: string }) => void;
   onSources?: (sources: { title: string; url: string; score: number }[]) => void;
+  onEmail?: (email: ComposedEmail) => void;
   onNextSteps?: (steps: string[]) => void;
   onDone?: () => void;
   onError?: (err: Error) => void;
 }
 
 export async function streamAIResponse(options: StreamAIResponseOptions): Promise<void> {
-  const { projectId, messages, mode, onChunk, onMetadata, onSources, onNextSteps, onDone, onError } = options;
+  const { projectId, messages, mode, onChunk, onMetadata, onSources, onEmail, onNextSteps, onDone, onError } = options;
 
   const { data: sessionData } = await supabase.auth.getSession();
   const token = sessionData.session?.access_token;
@@ -77,6 +78,8 @@ export async function streamAIResponse(options: StreamAIResponseOptions): Promis
             });
           } else if (parsed.type === 'sources') {
             onSources?.(parsed.sources || []);
+          } else if (parsed.type === 'email') {
+            onEmail?.(parsed.email);
           } else if (parsed.type === 'token') {
             onChunk(parsed.text);
           } else if (parsed.type === 'end') {

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Bot, User, Copy, Check, ArrowRight, Globe, ExternalLink } from 'lucide-react';
 import { RichMessage } from './RichMessage';
-import type { ChatMessage } from '../types';
+import EmailCard from './EmailCard';
+import type { ChatMessage, ComposedEmail } from '../types';
 
 interface MessageProps {
   message: ChatMessage;
@@ -109,6 +110,10 @@ export default function Message({ message, onNextStep }: MessageProps) {
               ))}
             </div>
           </div>
+        )}
+
+        {!isUser && !isStreaming && message.metadata?.email && (
+          <EmailCard email={message.metadata.email as ComposedEmail} />
         )}
 
         {!isUser && !isStreaming && message.metadata?.next_steps && message.metadata.next_steps.length > 0 && onNextStep && (

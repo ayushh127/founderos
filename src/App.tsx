@@ -254,6 +254,15 @@ export default function App() {
             )
           );
         },
+        onEmail: (email) => {
+          setMessages((prev) =>
+            prev.map((m) =>
+              m.id === assistantId
+                ? { ...m, metadata: { ...m.metadata, email } }
+                : m
+            )
+          );
+        },
         onNextSteps: (steps) => {
           setMessages((prev) =>
             prev.map((m) =>

@@ -94,3 +94,15 @@ export const STAGES: { id: Stage; label: string; icon: string; description: stri
 ];
 
 export const STAGE_ORDER: Stage[] = ['discovery', 'planner', 'market_research', 'manufacturer', 'finance', 'branding', 'strategy', 'complete'];
+
+// Email types
+export interface ComposedEmail {
+  subject: string;
+  body: string;
+  to: string;
+}
+
+export interface GmailConnection {
+  email: string;
+  connected: boolean;
+}
