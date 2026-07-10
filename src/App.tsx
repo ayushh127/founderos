@@ -343,6 +343,7 @@ export default function App() {
       <LoginPage
         onLogin={handleLogin}
         onNavigateToRegister={() => { setAuthError(null); setView('register'); }}
+        onNavigateToHome={() => { setAuthError(null); setView('landing'); }}
         error={authError}
       />
     );
@@ -353,6 +354,7 @@ export default function App() {
       <RegisterPage
         onRegister={handleRegister}
         onNavigateToLogin={() => { setAuthError(null); setView('login'); }}
+        onNavigateToHome={() => { setAuthError(null); setView('landing'); }}
         error={authError}
       />
     );

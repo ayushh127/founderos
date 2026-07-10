@@ -7,10 +7,11 @@ import {
 interface RegisterPageProps {
   onRegister: (name: string, email: string, password: string) => Promise<void>;
   onNavigateToLogin: () => void;
+  onNavigateToHome: () => void;
   error: string | null;
 }
 
-export function RegisterPage({ onRegister, onNavigateToLogin, error }: RegisterPageProps) {
+export function RegisterPage({ onRegister, onNavigateToLogin, onNavigateToHome, error }: RegisterPageProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
