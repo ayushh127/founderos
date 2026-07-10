@@ -97,10 +97,7 @@ export function LandingPage({ onLogin, onRegister }: LandingPageProps) {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-2">
-              <Logo className="w-7 h-7" />
-              <span className="font-bold text-lg">FounderOS</span>
-            </div>
+            <Logo />
             <div className="hidden md:flex items-center gap-8">
               <a
                 href="#features"
