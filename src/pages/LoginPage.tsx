@@ -43,7 +43,7 @@ export function LoginPage({ onLogin, onNavigateToRegister, error }: LoginPagePro
       >
         {/* Back button */}
         <button
-          onClick={() => { window.location.hash = '#/'; }}
+          onClick={onNavigateToHome}
           className="flex items-center gap-2 text-[var(--foreground-subtle)] hover:text-[var(--foreground)] text-sm mb-8 transition-colors cursor-pointer"
         >
           <ChevronLeft className="w-4 h-4" />
