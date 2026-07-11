@@ -41,6 +41,7 @@ FounderOS is an **intelligent startup co-pilot** with **8 specialized AI agents*
 
 - **🧠 Smart Agent Switching** — Auto mode analyzes your intent and routes to the best expert
 - **🌐 Real-Time Web Research** — Every answer can be grounded in live web data via Tavily + semantic RAG
+- **📧 AI Email Composition** — Ask your co-founder to write professional emails (outreach, supplier quotes, investor intros) with one-click **Open in Gmail**
 - **📊 Structured Responses** — Tables, comparisons, pros/cons, source citations — formatted for readability
 - **💾 Project Memory** — Chats persist per project. Switch between multiple startup ideas seamlessly
 - **🎯 Next Steps** — After every response, get actionable next steps to move forward
@@ -122,7 +123,7 @@ User Question → Explicit Keywords / Mode Forcing / AI Classifier
 |-----------------|----------------------|
 | **Creativity** | Multi-agent startup co-pilot with auto-switching — no existing product does this for founders |
 | **Originality** | Novel combination of 8 expert agents + RAG pipeline + project memory |
-| **Completeness** | Full auth, project CRUD, chat persistence, streaming, source citations, next steps |
+| **Completeness** | Full auth, project CRUD, chat persistence, streaming, source citations, next steps, AI email composition |
 | **AMD Platform Use** | All inference powered by Fireworks AI on AMD GPUs (DeepSeek V4 Pro + Nomic Embeddings) |
 | **Market Potential** | $XXB founder tools market; every pre-seed founder needs a structured co-pilot |
 
@@ -175,6 +176,7 @@ founder-os/
 │   │   ├── Sidebar.tsx       # App navigation + projects
 │   │   ├── Message.tsx       # Chat message bubbles
 │   │   ├── RichMessage.tsx   # Markdown rendering + tables
+│   │   ├── EmailCard.tsx     # AI-composed email preview + Gmail
 │   │   ├── EmptyState.tsx    # Welcome / empty chat state
 │   │   ├── ProjectPanel.tsx  # Project creation + management
 │   │   ├── ProjectModal.tsx  # Project creation dialog
@@ -202,8 +204,23 @@ founder-os/
 
 ---
 
+## 📧 AI Email Composition
+
+Ask your AI co-founder to draft any professional email — outreach to a supplier, investor introduction, customer follow-up — and it appears as a preview card in chat.
+
+**How it works:**
+1. Say _"Compose an email to XYZ supplier asking for a quote"_ or ask the Manufacturer agent directly
+2. The AI detects the email intent and streams a structured email (To, Subject, Body)
+3. An **EmailCard** renders below the response with editable fields and a **📬 Open in Gmail** button
+4. Clicking the button pre-fills `mailto:` with the recipient, subject, and body — you're one click away from sending
+
+No extra API keys needed — it uses the same Fireworks AI model. The email format is detected automatically so it works alongside regular chat responses.
+
+---
+
 ## 🔮 Roadmap
 
+- [x] **AI Email Composition** — Draft professional emails with one-click open in Gmail
 - [ ] **Voice Interface** — Speak to your AI co-founder
 - [ ] **Pitch Deck Generator** — Auto-generate investor decks from your project
 - [ ] **Competitor Tracking** — Automated weekly market landscape updates
